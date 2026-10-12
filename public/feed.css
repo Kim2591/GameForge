@@ -1,0 +1,95 @@
+body{
+    background-color: black;
+}
+@property --hue {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+h1{
+     text-align: center;
+     font-family: 'Arial Black', Impact, sans-serif;
+     font-size: 75px;
+      font-weight: 900;
+     color: #fff; /* El frente del texto se queda blanco para resaltar el 3D */
+     letter-spacing: 2px;
+     
+
+      animation: rotarColor 4s linear infinite;   
+}
+
+
+@keyframes rotarColor {
+  0% { --hue: 0deg; }
+  100% { --hue: 360deg; }
+}
+
+/* Aplicamos las sombras 3D usando la función hsl() basada en la variable animada */
+h1{
+  text-shadow: 
+    0 1px 0 hsl(var(--hue), 85%, 45%),
+    0 2px 0 hsl(var(--hue), 85%, 40%),
+    0 3px 0 hsl(var(--hue), 85%, 35%),
+    0 4px 0 hsl(var(--hue), 85%, 30%),
+    0 5px 0 hsl(var(--hue), 85%, 25%),
+    0 6px 1px rgba(0,0,0,0.1),
+    0 0 5px rgba(0,0,0,0.2),
+    0 5px 10px rgba(0,0,0,0.3);
+}
+/* Estilo general del menú */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+     padding: 15px 30px;
+}
+
+/* Las tres rayitas del botón */
+.menu-toggle {
+    display: none; /* Se mostrará solo en móviles */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+/* Opciones de la lista */
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Mostrar las rayitas en móvil */
+    }
+
+    .nav-list {
+        display: none; /* Ocultar opciones por defecto */
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        text-align: center;
+    }
+
+    .nav-list.active {
+        display: flex; /* Se activa con JavaScript */
+    }
+}
