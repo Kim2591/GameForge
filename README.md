@@ -4,7 +4,7 @@
 ---
 
 ## Que es GameForge
-GameForge es un espacio digital disenado para la comunidad de desarrollo indie. Permite a programadores, artistas 2D y 3D, musicos y disenadores mostrar sus creaciones en cualquier etapa de desarrollo y encontrar colaboradores con habilidades complementarias.
+GameForge es un espacio digital disenado para la comunidad de desarrollo indie. Permite a programadores, artistas 2D y 3D, musicos y diseñadores mostrar sus creaciones en cualquier etapa de desarrollo y encontrar colaboradores con habilidades complementarias.
 
 ---
 
