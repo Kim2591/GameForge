@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameForge | Comunidad y Proyectos de Videojuegos Indie</title>
+  <meta name="description" content="GameForge es la plataforma para conectar desarrolladores independientes, mostrar videojuegos y armar equipos de desarrollo.">
+  
+  <!-- Fuente Inter desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-tema="violeta">
+
+  <!-- ======================================================================
+       NAVBAR SUPERIOR
+       Aca va el logo, los enlaces rapidos, el cambiador de tema y publicar juego
+       ====================================================================== -->
+  <header class="header-principal">
+    <div class="nav-contenedor">
+      <!-- Logo y nombre de la pagina -->
+      <a href="#" class="logo-area" aria-label="GameForge Inicio">
+        <div class="logo-icono">
+          <!-- Icono tipo joystick gamer en SVG -->
+          <svg viewBox="0 0 24 24">
+            <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+        </div>
+        <div class="logo-texto">Game<span>Forge</span></div>
+      </a>
+
+      <!-- Enlaces del menu -->
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#seccion-explorar" class="nav-link activo">🎮 Explorar Juegos</a></li>
+          <li><a href="#seccion-explorar" class="nav-link">🤝 Colaboraciones</a></li>
+          <li><a href="#seccion-comunidad" class="nav-link">✨ Comunidad</a></li>
+        </ul>
+      </nav>
+
+      <!-- Botones de la derecha y cambiador de color de la web -->
+      <div class="nav-acciones">
+        <!-- Selector interactivo de colores / temas -->
+        <div class="selector-tema-wrap" title="Cambiar tema de color de la página">
+          <span class="selector-tema-label">Color:</span>
+          <button class="btn-color-punto punto-violeta activo" data-tema="violeta" title="Tema Violeta Cyber"></button>
+          <button class="btn-color-punto punto-esmeralda" data-tema="esmeralda" title="Tema Verde Matrix"></button>
+          <button class="btn-color-punto punto-sunset" data-tema="sunset" title="Tema Sunset Neón"></button>
+          <button class="btn-color-punto punto-azul" data-tema="azul" title="Tema Océano Cian"></button>
+          <button class="btn-color-punto punto-claro" data-tema="claro" title="Modo Claro"></button>
+        </div>
+
+        <button class="btn btn-secondary btn-sm" id="btn-reset-datos" title="Restaurar juegos iniciales de prueba">
+          ↺ Reset
+        </button>
+        <button class="btn btn-primary" id="btn-abrir-crear">
+          <span>+ Publicar Juego</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       HERO / PORTADA PRINCIPAL
+       La bienvenida a la web con estadisticas y llamados a la accion
+       ====================================================================== -->
+  <main>
+    <section class="hero-seccion">
+      <div class="hero-box">
+        <div class="hero-info">
+          <div class="badge-evento">
+            <span>🔥</span> Comunidad Abierta de Desarrolladores Indie
+          </div>
+          <h1 class="hero-titulo">
+            Forja el futuro de tus <span>videojuegos independientes</span>
+          </h1>
+          <p class="hero-subtitulo">
+            El punto de encuentro donde desarrolladores, ilustradores, musicos y diseñadores comparten sus prototipos, reciben feedback y arman equipos para crear juegos increibles.
+          </p>
+          <div class="hero-botones">
+            <button class="btn btn-primary" id="btn-hero-explorar">
+              Explorar Catálogo
+            </button>
+            <button class="btn btn-secondary" id="btn-hero-crear">
+              Subir Mi Proyecto
+            </button>
+          </div>
+        </div>
+
+        <!-- Cajas de estadisticas de la comunidad -->
+        <div class="hero-metricas">
+          <div class="metrica-item">
+            <span class="metrica-numero" id="metrica-proyectos-total">6</span>
+            <span class="metrica-label">Juegos Activos</span>
+          </div>
+          <div class="metrica-item">
+            <span class="metrica-numero" id="metrica-buscando-talento">5</span>
+            <span class="metrica-label">Buscando Equipo</span>
+          </div>
+          <div class="metrica-item">
+            <span class="metrica-numero">100%</span>
+            <span class="metrica-label">Comunidad Indie</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+       CATALOGO Y BUSCADOR DE JUEGOS
+       Aca esta el buscador, los filtros desplegables y las tarjetas dinamicas
+       ====================================================================== -->
+    <section class="explorar-seccion" id="seccion-explorar">
+      <!-- Caja de filtros -->
+      <div class="barra-filtros">
+        <div class="filtros-fila-superior">
+          <!-- Campo de busqueda en tiempo real -->
+          <div class="buscador-wrapper">
+            <svg class="buscador-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input 
+              type="text" 
+              id="buscador-proyectos" 
+              class="buscador-input" 
+              placeholder="Buscar por titulo, genero, etiquetas o creador..."
+              autocomplete="off"
+            >
+          </div>
+
+          <!-- Selectores para filtrar -->
+          <div class="filtros-selects">
+            <select id="filtro-motor" class="custom-select" aria-label="Filtrar por Motor">
+              <option value="todos">Todos los Motores</option>
+              <option value="Godot">Godot Engine</option>
+              <option value="Unity">Unity</option>
+              <option value="Unreal">Unreal Engine 5</option>
+              <option value="Phaser">Phaser / Web</option>
+            </select>
+
+            <select id="filtro-genero" class="custom-select" aria-label="Filtrar por Género">
+              <option value="todos">Todos los Géneros</option>
+              <option value="Acción">Acción / Roguelike</option>
+              <option value="RPG">RPG Táctico</option>
+              <option value="Terror">Terror Psicológico</option>
+              <option value="Simulación">Simulación / Cozy</option>
+              <option value="Carreras">Carreras Arcade</option>
+              <option value="Plataformas">Plataformas Puzzle</option>
+            </select>
+
+            <select id="filtro-rol" class="custom-select" aria-label="Filtrar por Rol Buscado">
+              <option value="todos">Cualquier Rol</option>
+              <option value="Pixel Artist">Pixel Artist</option>
+              <option value="Compositor">Compositor / Audio</option>
+              <option value="Programador">Programador</option>
+              <option value="Artista 3D">Artista 3D</option>
+              <option value="Niveles">Diseñador de Niveles</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Chips o tags de acceso rapido a motores -->
+        <div class="filtros-tags-rapidos">
+          <span class="tag-label">Motores:</span>
+          <button class="chip-filtro activo" data-motor="todos">Todos</button>
+          <button class="chip-filtro" data-motor="Godot">Godot 4</button>
+          <button class="chip-filtro" data-motor="Unity">Unity</button>
+          <button class="chip-filtro" data-motor="Unreal">Unreal 5</button>
+          <button class="chip-filtro" data-motor="Phaser">Phaser JS</button>
+        </div>
+      </div>
+
+      <!-- Encabezado con el conteo de proyectos encontrados -->
+      <div class="proyectos-header">
+        <h2 class="proyectos-titulo">
+          Catálogo de Videojuegos Independientes
+          <span class="contador-proyectos" id="contador-proyectos">Cargando...</span>
+        </h2>
+      </div>
+
+      <!-- Aca adentro el archivo proyecto.js inyecta todas las tarjetas -->
+      <div class="proyectos-grid" id="proyectos-grid" aria-live="polite">
+        <!-- Las cards se generan dinamicamente desde JavaScript -->
+      </div>
+    </section>
+
+    <!-- ======================================================================
+       SECCION COMUNIDAD / COMO FUNCIONA
+       ====================================================================== -->
+    <section class="explorar-seccion" id="seccion-comunidad" style="margin-top: 4rem;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2.2rem;">
+        <h3 style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1rem;">¿Cómo funciona GameForge?</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          GameForge es un espacio abierto pensado para la comunidad de desarrolladores independientes. Puedes dar a conocer tus proyectos en cualquier etapa de desarrollo y encontrar companeros con habilidades complementarias.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+          <div style="background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">1. Muestra tu Proyecto</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Publica capturas, motor de desarrollo y el estado de tu juego para que la comunidad lo descubra.</span>
+          </div>
+          <div style="background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">2. Arma tu Equipo</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Especifica que roles te hacen falta: artistas 2D, musicos, programadores o testers.</span>
+          </div>
+          <div style="background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--accent-green);">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">3. Conecta y Lanza</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Recibe postulaciones directas con enlaces a portafolios y forja tu proximo gran videojuego.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       MODAL 1: DETALLES DE UN VIDEOJUEGO
+       Se abre al darle clic en "Detalles" en cualquier tarjeta
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-detalles" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-detalle">
+    <div class="modal-contenedor">
+      <button class="modal-cerrar-btn" aria-label="Cerrar modal">&times;</button>
+      <div id="detalles-modal-body">
+        <!-- El contenido se inyecta desde JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL 2: FORMULARIO PARA PUBLICAR UN NUEVO JUEGO
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-crear" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-crear">
+    <div class="modal-contenedor">
+      <button class="modal-cerrar-btn" aria-label="Cerrar modal">&times;</button>
+      <div class="modal-formulario-header">
+        <h3 id="modal-titulo-crear" style="font-size: 1.4rem; color: var(--text-primary);">Forjar Nuevo Proyecto</h3>
+        <p style="color: var(--text-secondary); font-size: 0.85rem;">Registra tu juego indie para que la comunidad pueda conocerlo y colaborar.</p>
+      </div>
+
+      <form id="form-crear-proyecto">
+        <div class="form-grid">
+          <div class="form-grupo form-col-completa">
+            <label class="form-label" for="crear-titulo">Título del Videojuego *</label>
+            <input type="text" id="crear-titulo" class="form-input" placeholder="Ej: Shadow of the Abyss" required>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="crear-autor">Nombre del Desarrollador o Estudio *</label>
+            <input type="text" id="crear-autor" class="form-input" placeholder="Ej: PixelPals Studio" required>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="crear-contacto">Correo o Discord de Contacto</label>
+            <input type="text" id="crear-contacto" class="form-input" placeholder="Ej: equipo@pixelpals.dev">
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="crear-motor">Motor de Desarrollo</label>
+            <select id="crear-motor" class="form-select">
+              <option value="Godot Engine 4">Godot Engine 4</option>
+              <option value="Unity">Unity</option>
+              <option value="Unreal Engine 5">Unreal Engine 5</option>
+              <option value="Phaser / JS">Phaser / JS Canvas</option>
+              <option value="Motor Propio (C++)">Motor Propio (C++)</option>
+            </select>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="crear-genero">Género</label>
+            <select id="crear-genero" class="form-select">
+              <option value="Acción / Roguelike">Acción / Roguelike</option>
+              <option value="RPG Táctico">RPG Táctico</option>
+              <option value="Terror Psicológico">Terror Psicológico</option>
+              <option value="Simulación / Cozy">Simulación / Cozy</option>
+              <option value="Plataformas 2D">Plataformas 2D</option>
+              <option value="Carreras Arcade">Carreras Arcade</option>
+              <option value="Puzzle / Estrategia">Puzzle / Estrategia</option>
+            </select>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="crear-estado">Estado de Desarrollo</label>
+            <select id="crear-estado" class="form-select">
+              <option value="Prototipo">Prototipo Temprano</option>
+              <option value="Alpha Jugable" selected>Alpha Jugable</option>
+              <option value="Beta Cerrada">Beta Cerrada</option>
+              <option value="Beta Pública">Beta Pública</option>
+              <option value="Lanzado">Lanzado / Demo</option>
+            </select>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="crear-progreso">Progreso Estimado (%)</label>
+            <input type="number" id="crear-progreso" class="form-input" min="5" max="100" value="35">
+          </div>
+
+          <div class="form-grupo form-col-completa">
+            <label class="form-label" for="crear-roles">Roles que Buscas (separados por coma)</label>
+            <input type="text" id="crear-roles" class="form-input" placeholder="Ej: Pixel Artist, Animador 2D, Diseñador de Niveles">
+          </div>
+
+          <div class="form-grupo form-col-completa">
+            <label class="form-label" for="crear-portada">Enlace de Portada (Opcional)</label>
+            <input type="url" id="crear-portada" class="form-input" placeholder="https://ejemplo.com/portada.jpg (si lo dejas vacio usamos una por defecto)">
+          </div>
+
+          <div class="form-grupo form-col-completa">
+            <label class="form-label" for="crear-resumen">Resumen Corto *</label>
+            <textarea id="crear-resumen" class="form-textarea" placeholder="De que trata el juego en 1 o 2 oraciones..." required></textarea>
+          </div>
+
+          <div class="form-grupo form-col-completa">
+            <label class="form-label" for="crear-descripcion">Descripción Detallada y Mecánicas</label>
+            <textarea id="crear-descripcion" class="form-textarea" placeholder="Explica la historia, mecánicas de juego, jugabilidad..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button type="button" class="btn btn-secondary modal-cancelar-btn">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Publicar Juego</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL 3: POSTULARSE PARA COLABORAR EN UN EQUIPO
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-colaborar" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-colaborar">
+    <div class="modal-contenedor">
+      <button class="modal-cerrar-btn" aria-label="Cerrar modal">&times;</button>
+      <div class="modal-formulario-header">
+        <h3 id="modal-titulo-colaborar" style="font-size: 1.4rem; color: var(--text-primary);">Unirse al Proyecto</h3>
+        <p style="color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem;" id="colaborar-proyecto-titulo">Proyecto</p>
+      </div>
+
+      <form id="form-colaborar">
+        <input type="hidden" id="colaborar-proyecto-id">
+        <div class="form-grid">
+          <div class="form-grupo">
+            <label class="form-label" for="colaborar-nombre">Tu Nombre o Alias *</label>
+            <input type="text" id="colaborar-nombre" class="form-input" placeholder="Ej: Dani Dev" required>
+          </div>
+
+          <div class="form-grupo">
+            <label class="form-label" for="colaborar-contacto">Tu Correo o Discord *</label>
+            <input type="text" id="colaborar-contacto" class="form-input" placeholder="Ej: dani#1234 o correo@ejemplo.com" required>
+          </div>
+
+          <div class="form-grupo form-col-completa">
+            <label class="form-label" for="colaborar-rol">¿En qué rol te gustaría ayudar?</label>
+            <select id="colaborar-rol" class="form-select">
+              <!-- Las opciones se cargan segun lo que busca el juego -->
+            </select>
+          </div>
+
+          <div class="form-grupo form-col-completa">
+            <label class="form-label" for="colaborar-mensaje">Mensaje / Enlace a Portafolio o GitHub</label>
+            <textarea id="colaborar-mensaje" class="form-textarea" placeholder="Cuentale al creador que herramientas manejas o deja tu link de GitHub / ArtStation..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button type="button" class="btn btn-secondary modal-cancelar-btn">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Aca se inyectan los carteles toast flotantes -->
+  <div class="toast-contenedor" id="toast-contenedor" aria-live="assertive"></div>
+
+  <!-- ======================================================================
+       FOOTER / PIE DE PAGINA
+       ====================================================================== -->
+  <footer class="footer-principal">
+    <div class="footer-contenedor">
+      <div>
+        <div class="logo-area">
+          <div class="logo-icono">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill:#fff;">
+              <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <div class="logo-texto">Game<span>Forge</span></div>
+        </div>
+        <p class="footer-descripcion">
+          Plataforma web para conectar creadores, compartir proyectos independientes y forjar nuevos videojuegos en equipo.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-col-titulo">Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#seccion-explorar" class="footer-link">Explorar Catálogo</a></li>
+          <li><a href="#seccion-comunidad" class="footer-link">Cómo Funciona</a></li>
+          <li><a href="#" class="footer-link" id="footer-link-crear">Subir Mi Videojuego</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-titulo">GameForge Indie</h4>
+        <div class="footer-comunidad-info">
+          Plataforma creada por y para la comunidad de desarrolladores independientes.<br>
+          <em>Conecta &bull; Colabora &bull; Publica</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      <div>&copy; 2026 GameForge &bull; Plataforma comunitaria de desarrollo de videojuegos.</div>
+      <div>Hecho con HTML5 semántico, CSS3 y JavaScript moderno modular.</div>
+    </div>
+  </footer>
+
+  <!-- Script principal con modulos nativos -->
+  <script type="module" src="js/pages/proyecto.js"></script>
+
+  <script>
+    // Enlace rapido del footer para abrir el modal de publicar
+    document.getElementById('footer-link-crear')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('btn-abrir-crear')?.click();
+    });
+  </script>
+</body>
+</html>
