@@ -22,8 +22,8 @@ GameForge es un espacio digital disenado para la comunidad de desarrollo indie. 
 - HTML5: Estructura semantica accesible (header, nav, main, section, article, modales y formularios).
 - CSS3: Diseno responsivo para moviles y escritorio, variables CSS para los temas de color dinamicos, grid, flexbox y efectos visuales.
 - JavaScript Moderno (ES Modules):
-  - proyectoService.js: Capa de datos desacoplada, operaciones de consulta, filtrado dinamico y persistencia local en el storage.
-  - proyecto.js: Manipulacion del DOM, eventos en vivo, notificaciones flotantes (Toast) y control de modales.
+  - js/proyectoService.js: Capa de datos desacoplada, operaciones de consulta, filtrado dinamico y persistencia local en el storage.
+  - js/proyecto.js: Manipulacion del DOM, eventos en vivo, notificaciones flotantes (Toast) y control de modales.
 
 ---
 
@@ -32,27 +32,24 @@ GameForge es un espacio digital disenado para la comunidad de desarrollo indie. 
 ### Opcion 1: Con el servidor local (Recomendado)
 Ejecuta en tu terminal desde la raiz del proyecto:
 ```bash
-node frontend_server.js
+node server.js
 ```
 Abre en tu navegador: http://localhost:5500
 
 ### Opcion 2: Directo en el navegador
-Entra a la carpeta frontend/ y abre el archivo index.html en cualquier navegador (o usa la extension Live Server de VS Code).
+Abre directamente el archivo `index.html` en cualquier navegador (o usa la extension Live Server de VS Code).
 
 ---
 
 ## Estructura de Archivos
 ```text
 GameForge/
-├── frontend/
-│   ├── index.html                   # Pagina principal (HTML5 semantico)
-│   ├── css/
-│   │   └── style.css                # Estilos, temas de color y responsividad
-│   └── js/
-│       ├── pages/
-│       │   └── proyecto.js          # Controlador de interfaz, eventos y modales
-│       └── services/
-│           └── proyectoService.js   # Manejo de datos y almacenamiento en localStorage
-├── frontend_server.js               # Servidor estatico local en Node.js
-└── README.md                        # Documentacion del proyecto
+├── css/
+│   └── style.css            # Estilos, efectos neón y temas de color
+├── js/
+│   ├── proyecto.js          # Controlador de interfaz, eventos y modales
+│   └── proyectoService.js   # Manejo de datos y almacenamiento en localStorage
+├── index.html               # Pagina principal (HTML5 semantico)
+├── server.js                # Servidor local en Node.js (puerto 5500)
+└── README.md                # Documentacion del proyecto
 ```

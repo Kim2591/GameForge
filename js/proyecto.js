@@ -3,7 +3,7 @@
 // Aca manejamos los clics, modales, cambio de color de la pagina y la busqueda
 // ============================================================================
 
-import { proyectoService } from '../services/proyectoService.js';
+import { proyectoService } from './proyectoService.js';
 
 // Guardamos el estado de los filtros seleccionados
 let filtrosActuales = {

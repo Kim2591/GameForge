@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 5500;
-const PUBLIC_DIR = path.join(__dirname, 'frontend');
+const PUBLIC_DIR = __dirname;
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',
@@ -18,11 +18,10 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   let filePath = path.join(PUBLIC_DIR, req.url.split('?')[0]);
-  if (filePath.endsWith(path.sep) || fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+  if (filePath.endsWith(path.sep) || (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory())) {
     filePath = path.join(filePath, 'index.html');
   }
 
@@ -46,5 +45,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`GameForge Live Server activo en http://localhost:${PORT}`);
+  console.log(`GameForge Server activo en http://localhost:${PORT}`);
 });
